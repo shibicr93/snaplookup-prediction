@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+
+
+<head>
+    <title>Hello World</title>
+</head>
+
+
+
+
+<body>                <input type="file" accept="image/*" capture="environment">
+<canvas></canvas>
+<script type="text/javascript">
+var input = document.querySelector('input[type=file]'); // see Example 4
+input.onchange = function () {
+  var file = input.files[0];
+  upload(file);
+};
+
+function upload(file) {
+  var form = new FormData(),
+      xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange=function(){
+    if(xhr.readyState==XMLHttpRequest.DONE){
+    window.location=xhr.responseText;
+    alert(xhr.responseText);
+    }
+    }
+
+  form.append('imgfile', file);
+  xhr.open('post', '/predict', true);
+  xhr.send(form);
+}
+
+    </script>
+    </div>
+</body>
+
+
+
+</html>
